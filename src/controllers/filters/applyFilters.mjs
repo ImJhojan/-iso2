@@ -8,15 +8,24 @@ const PayloadValidation = Joi.object({
         NEGATIVE_FILTER, GREYSCALE_FILTER, BLUR_FILTER
     ))
 })
-const applyFilters = async (payload) => {
+
+const applyFilters = async (files, filters, filtersBase) => {
     try {
-        await PayloadValidation.validateAsync(payload);
+        await PayloadValidation.validateAsync(filters);
     } catch (error) {
         throw Boom.badData(error.message, { error });
         next(err);
     }
+    const filesData = [];
+
+    for (const file of files) {
+
+        const fileData = file.buffer;
+        filesData.push(fileData);
+    }
     const newProcess = new Process;
-    newProcess.filters = payload.filters;
+    newProcess.filters = filtersBase;
+    newProcess.files = filesData;
 
     await newProcess.save();
 

@@ -6,6 +6,7 @@ import Boom from "@hapi/boom";
 import { PORT } from "./src/commons/env.mjs";
 const app = Express();
 
+
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
