@@ -4,7 +4,8 @@ import Process from '../../models/Process.mjs';//
 import { BLUR_FILTER, GREYSCALE_FILTER, NEGATIVE_FILTER } from '../../commons/constans.mjs';
 
 const PayloadValidation = Joi.object({
-  filters: Joi.array().min(1).items(Joi.string().valid(NEGATIVE_FILTER, GREYSCALE_FILTER, BLUR_FILTER)),
+  filters: Joi.array().min(1).items(Joi
+    .string().valid(NEGATIVE_FILTER, GREYSCALE_FILTER, BLUR_FILTER)),
 });
 
 const applyFilters = async (files, filters, filtersBase) => {
@@ -15,10 +16,12 @@ const applyFilters = async (files, filters, filtersBase) => {
   }
   const filesData = [];
 
+  // eslint-disable-next-line
   for (const file of files) {
     const fileData = file.buffer;
     filesData.push(fileData);
   }
+
   const newProcess = new Process();
   newProcess.filters = filtersBase;
   newProcess.files = filesData;
