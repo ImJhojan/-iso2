@@ -1,31 +1,31 @@
-import { Schema, model } from "mongoose";
-import { TYPE_OF_FILTERS } from "../commons/constans.mjs";
+import { Schema, model } from 'mongoose';
+import { TYPE_OF_FILTERS } from '../commons/constans.mjs';
 
 const ProcessSchema = new Schema(
-    {
-        files:{
+  {
+    files: {
 
-            type: Buffer,
+      type: Buffer,
 
-            require: true
+      require: true,
 
-        },
-        
-        filters: {
-            type: [
-                {
-                    type: String,
-                    enum: TYPE_OF_FILTERS,
-                    required: true,
-                },
-            ],
-        },
     },
-    {
-        timestamps: true, //son como los triggers, me dice cuando se ejecutó
-    }
+
+    filters: {
+      type: [
+        {
+          type: String,
+          enum: TYPE_OF_FILTERS,
+          required: true,
+        },
+      ],
+    },
+  },
+  {
+    timestamps: true, // son como los triggers, me dice cuando se ejecutó
+  },
 );
 
-const ProcessModel = model("process", ProcessSchema);
+const ProcessModel = model('process', ProcessSchema);
 
 export default ProcessModel;

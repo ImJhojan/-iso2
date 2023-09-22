@@ -1,12 +1,12 @@
-import {Router} from "express";
+import { Router } from 'express';
+import applyFiltersHandler from './applyFiltersHandler.mjs';
+
 const router = Router();
-import applyFiltersHandler from "./applyFiltersHandler.mjs";
 
-
-router.get("/", (req, res) => {
-    res.send("images Get");
+router.get('/', (req, res) => {
+  res.send('images Get');
 });
 
-router.post("/", applyFiltersHandler);
+router.post('/', applyFiltersHandler);
 
 export default router;
