@@ -1,34 +1,18 @@
-import Joi from 'joi'; // validar un esquema de tipo json
 import Boom from '@hapi/boom';
-import Process from '../../models/Process.mjs';//
-import { BLUR_FILTER, GREYSCALE_FILTER, NEGATIVE_FILTER } from '../../commons/constans.mjs';
+import Process from '../../models/Process.mjs';
 
-const PayloadValidation = Joi.object({
-  filters: Joi.array().min(1).items(Joi
-    .string().valid(NEGATIVE_FILTER, GREYSCALE_FILTER, BLUR_FILTER)),
-});
-
-const applyFilters = async (files, filters, filtersBase) => {
+const getFilters = async (id) => {
   try {
-    await PayloadValidation.validateAsync(filters);
+    const process = await Process.findById(id);
+
+    if (!process || !process.files || process.files.length === 0) {
+      return { message: 'Imagen no encontrada' };
+    }
+    const { filters } = process; // Accede al campo filters del objeto process
+    return { message: `Imagen encontrada, Los filtros aplicados para esta imagen son: ${filters}` };
   } catch (error) {
     throw Boom.badData(error.message, { error });
   }
-  const filesData = [];
-
-  // eslint-disable-next-line
-  for (const file of files) {
-    const fileData = file.buffer;
-    filesData.push(fileData);
-  }
-
-  const newProcess = new Process();
-  newProcess.filters = filtersBase;
-  newProcess.files = filesData;
-
-  await newProcess.save();
-
-  return newProcess;
 };
 
-export default applyFilters;
+export default getFilters;
