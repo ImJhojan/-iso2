@@ -2,7 +2,6 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { v4 } from 'uuid';
 import Boom from '@hapi/boom';
 import { MINIO_ACCESS_KEY, MINIO_SECRET_KEY, MINIO_HOST } from '../src/commons/env.mjs';
-
 import { BUCKET_NAME } from '../src/commons/constans.mjs';
 
 class MinioService {
@@ -28,7 +27,6 @@ class MinioService {
         throw Boom.badRequest('Image is required');
       }
       console.log(image);
-
       if (!image.originalname) {
         throw Boom.badRequest('Image originalname is required');
       }
@@ -52,9 +50,7 @@ class MinioService {
         Bucket: BUCKET_NAME,
         Key: fileName,
         Body: buffer,
-
       }));
-
       return fileName;
     } catch (error) {
       throw Boom.isBoom(error) ? error : Boom.internal('Error saving image', error);
