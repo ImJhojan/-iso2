@@ -1,7 +1,5 @@
 import ProcessRepository from '../repositories/ProcessRepository.mjs';
-
 import MinioService from '../services/MinioService.mjs';
-
 import ProcessService from '../services/ProcessService.mjs';
 
 const buildContainer = (req, res, next) => {
