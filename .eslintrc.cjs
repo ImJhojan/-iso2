@@ -5,11 +5,13 @@ module.exports = {
   },
   extends: 'airbnb-base',
   overrides: [
+    
     {
       env: {
         node: true,
       },
       files: [
+
         '.eslintrc.{js,cjs}',
       ],
       parserOptions: {
@@ -18,10 +20,12 @@ module.exports = {
     },
   ],
   parserOptions: {
+
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
   rules: {
+
     'import/extensions': [
       'error',
       'ignorePackages',

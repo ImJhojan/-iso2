@@ -3,14 +3,6 @@ import { TYPE_OF_FILTERS } from '../commons/constans.mjs';
 
 const ProcessSchema = new Schema(
   {
-    files: {
-
-      type: Buffer,
-
-      require: true,
-
-    },
-
     filters: {
       type: [
         {
@@ -22,7 +14,7 @@ const ProcessSchema = new Schema(
     },
   },
   {
-    timestamps: true, // son como los triggers, me dice cuando se ejecutó
+    timestamps: true,
   },
 );
 
