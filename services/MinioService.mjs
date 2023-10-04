@@ -27,7 +27,6 @@ class MinioService {
       if (!image) {
         throw Boom.badRequest('Image is required');
       }
-
       console.log(image);
 
       if (!image.originalname) {

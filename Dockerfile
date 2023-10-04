@@ -10,6 +10,7 @@ COPY /src ./src/
 ENV MONGO_URI mongodb+srv://jhojan:lWlKZcPKcMAZrgP3@cluster0.fuzzwmy.mongodb.net/?retryWrites=true&w=majority
 
 ENV PORT 5001
+
 ENV MINIO_HOST=http://minio:9000
 
 ENV MINIO_ACCESS_KEY=miniouser
