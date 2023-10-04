@@ -55,7 +55,7 @@ class MinioService {
         Body: buffer,
 
       }));
-      
+
       return fileName;
     } catch (error) {
       throw Boom.isBoom(error) ? error : Boom.internal('Error saving image', error);
